@@ -89,5 +89,5 @@ ENV/
 .ropeproject
 
 .idea/
-models/
+models/saved_models*
 word2vec-GoogleNews-vectors/
