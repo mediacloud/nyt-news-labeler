@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>News Labels Classifier</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
+</head>
+<style>
+    .boxsizingBorder {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+</style>
+<body>
+    <h1>Predict News Labels</h1>
+
+    <h3>input text here:</h3>
+    <div>
+<textarea id="Text1" rows="40" style="width:80%;"></textarea>
+        </div>
+<button id="getLabels">Get Labels!</button>
+<h5>Labels:</h5>
+    <table>
+        <tr>
+            <th>600 Labels</th>
+            <th>3455 Labels (>30 articles)</th>
+            <th>All Labels (26000)</th>
+            <th>Labels + Taxonomies (>30)</th>
+        </tr>
+        <tr>
+            <td><div id="labels600"></div></td>
+            <td><div id="labels3000"></div></td>
+            <td><div id="labelsAll"></div></td>
+            <td><div id="labelsTax"></div></td>
+        </tr>
+    </table>
+
+
+<script type="text/javascript">
+$('#getLabels').click(function() {
+    // information to be sent to the server
+    var info = $('#Text1').val();
+    var data = JSON.stringify({text: info});
+
+    $.ajax({
+        method: 'POST',
+        url: '/predict',
+        data: data,
+        contentType: 'application/json',
+        success: (data) => {
+            //console.log(data);
+            $('#labels600').html(data.labels600.replace(/\n/g, "<br />"));
+            $('#labels3000').html(data.labels3000.replace(/\n/g, "<br />"));
+            $('#labelsAll').html(data.labels_all.replace(/\n/g, "<br />"));
+            $('#labelsTax').html(data.labels_tax.replace(/\n/g, "<br />"));
+        }
+        });
+
+        });
+
+</script>
+
+</body>
+</html>

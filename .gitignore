@@ -29,6 +29,8 @@ var/
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
+.DS_Store
+*.bin
 
 # Installer logs
 pip-log.txt
@@ -72,8 +74,6 @@ target/
 # pyenv
 .python-version
 
-# celery beat schedule file
-celerybeat-schedule
 
 # dotenv
 .env
@@ -88,7 +88,6 @@ ENV/
 # Rope project settings
 .ropeproject
 
-.DS_Store
 .idea/
 models/
 word2vec-GoogleNews-vectors/

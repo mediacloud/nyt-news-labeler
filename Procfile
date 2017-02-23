@@ -1,0 +1,1 @@
+web: gunicorn -t 900 app:app
