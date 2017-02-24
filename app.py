@@ -8,7 +8,6 @@ import os
 import urllib
 import zipfile
 
-
 emmbedings_dir = "./word2vec-GoogleNews-vectors"
 emmbedings_file_name = "GoogleNews-vectors-negative300.bin"
 emmbedings_file_path = os.path.join(emmbedings_dir, emmbedings_file_name)
@@ -28,13 +27,9 @@ models_file_path = os.path.join(models_dir, models_file_name)
 
 if not os.path.isdir(os.path.join(models_file_path)):
     print "Trained models not found, downloading files..."
-    urllib.urlretrieve("https://dl.dropboxusercontent.com/u/466924777/nyt_labels/saved_models.zip", models_dir)
-
-with zipfile.ZipFile(models_file_path+".zip","r") as zip_ref:
-    zip_ref.extractall()
-
-
-
+    urllib.urlretrieve("https://dl.dropboxusercontent.com/u/466924777/nyt_labels/saved_models.zip", models_file_path)
+    with zipfile.ZipFile(models_file_path+".zip","r") as zip_ref:
+        zip_ref.extractall(models_file_path)
 
 labels3000 = []
 with open('./models/labels_long.json') as data_file:
@@ -47,7 +42,7 @@ labels600 = []
 with open('./models/labels.json') as data_file:
   labels600 = json.load(data_file)
 scaler600 = load_from_disk('./scaler/scaler')
-keras_model600 = load_model('./models/saved_models/labels_600/trained_model.h5')
+keras_model600 = load_model('./models/saved_models/labels600/trained_model.h5')
 model600 = MagpieModel(keras_model=keras_model600, word2vec_model=word2vecmodel, scaler=scaler600, labels=labels600)
 
 labels_all = []
