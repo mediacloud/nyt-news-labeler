@@ -17,7 +17,7 @@ keras_model = load_model('./models/weights.00-0.00.hdf5')
 
 model = MagpieModel(keras_model=keras_model, word2vec_model=word2vecmodel, scaler=scaler, labels=labels)
 #save_to_disk('./scalar/embeddings', model.word2vec_model)
-print "predicting..."
+print "predicting...!"
 
 res = model.predict_from_text(u'''Gold futures are headed for the longest streak of losses since November as buying from China stops ahead of its week-long holiday to celebrate the Lunar New Year.
 
