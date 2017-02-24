@@ -27,9 +27,9 @@ models_file_path = os.path.join(models_dir, models_file_name)
 
 if not os.path.isdir(os.path.join(models_file_path)):
     print "Trained models not found, downloading files..."
-    urllib.urlretrieve("https://dl.dropboxusercontent.com/u/466924777/nyt_labels/saved_models.zip", models_file_path)
+    urllib.urlretrieve("https://dl.dropboxusercontent.com/u/466924777/nyt_labels/saved_models.zip", models_file_path+".zip")
     with zipfile.ZipFile(models_file_path+".zip","r") as zip_ref:
-        zip_ref.extractall(models_file_path)
+        zip_ref.extractall(models_dir)
 
 labels3000 = []
 with open('./models/labels_long.json') as data_file:
