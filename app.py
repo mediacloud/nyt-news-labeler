@@ -112,6 +112,13 @@ scaler_tax = load_scaler_from_disk('./scaler/scalar_all_labels')
 keras_model_tax = load_model('./models/saved_models/labels_taxonomies/weights.01-0.00.hdf5')
 model_tax = TopicDetectionModel(keras_model=keras_model_tax, word2vec_model=word2vecmodel, scaler=scaler_tax, labels=labels_tax)
 
+taxonomies = []
+with open('./models/taxonomies_list.json') as data_file:
+    taxonomies = json.load(data_file)
+scaler_just_tax = load_scaler_from_disk('./scaler/scalar_all_labels')
+keras_model_just_tax = load_model('./models/saved_models/just_taxonomies/weights.03-0.00.hdf5')
+model_just_tax = TopicDetectionModel(keras_model=keras_model_just_tax, word2vec_model=word2vecmodel, scaler=scaler_just_tax, labels=taxonomies)
+
 app = Flask(__name__)
 # for debugging puerposes
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -131,8 +138,10 @@ def dcgan():
     res3000 = model3000.predict(text)
     res_all = model_all.predict(text)
     res_tax = model_tax.predict(text)
+    res_just_tax = model_just_tax.predict(text)
     return jsonify({'labels600': "\n".join(["%s : %s"%(x[0], "{0:.5f}".format(x[1])) for x in res600[:30]]),
                     'labels3000': "\n".join(["%s : %s"%(x[0], "{0:.5f}".format(x[1])) for x in res3000[:30]]),
                     'labels_all': "\n".join(["%s : %s" % (x[0], "{0:.5f}".format(x[1])) for x in res_all[:30]]),
                     'labels_tax': "\n".join(["%s : %s" % (x[0], "{0:.5f}".format(x[1])) for x in res_tax[:30]]),
+                    'taxonomies': "\n".join(["%s : %s" % (x[0], "{0:.5f}".format(x[1])) for x in res_just_tax[:30]]),
                     })

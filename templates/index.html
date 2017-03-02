@@ -26,12 +26,14 @@
             <th>3455 Labels (>30 articles)</th>
             <th>All Labels (26000)</th>
             <th>Labels + Taxonomies (>30)</th>
+            <th>Taxonomies</th>
         </tr>
         <tr>
             <td><div id="labels600"></div></td>
             <td><div id="labels3000"></div></td>
             <td><div id="labelsAll"></div></td>
             <td><div id="labelsTax"></div></td>
+            <td><div id="taxonomies"></div></td>
         </tr>
     </table>
 
@@ -53,6 +55,7 @@ $('#getLabels').click(function() {
             $('#labels3000').html(data.labels3000.replace(/\n/g, "<br />"));
             $('#labelsAll').html(data.labels_all.replace(/\n/g, "<br />"));
             $('#labelsTax').html(data.labels_tax.replace(/\n/g, "<br />"));
+            $('#taxonomies').html(data.taxonomies.replace(/\n/g, "<br />"));
         }
         });
 
