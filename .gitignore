@@ -75,8 +75,6 @@ target/
 .python-version
 
 
-# dotenv
-.env
 
 # virtualenv
 venv/
