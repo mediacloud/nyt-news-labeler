@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify, render_template
 import zipfile
 
+import nltk
+
 import numpy as np
 from nltk.tokenize import word_tokenize
 import os
