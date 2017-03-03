@@ -91,3 +91,6 @@ models/saved_models.zip
 models/saved_models/
 models/saved_models/*
 word2vec-GoogleNews-vectors/
+scaler/scaler_2
+scaler/scalar_all_labels
+scaler/scaler_labels_long

@@ -51,10 +51,10 @@ $('#getLabels').click(function() {
         contentType: 'application/json',
         success: (data) => {
             //console.log(data);
-            $('#labels600').html(data.labels600.replace(/\n/g, "<br />"));
-            $('#labels3000').html(data.labels3000.replace(/\n/g, "<br />"));
-            $('#labelsAll').html(data.labels_all.replace(/\n/g, "<br />"));
-            $('#labelsTax').html(data.labels_tax.replace(/\n/g, "<br />"));
+            $('#labels600').html(data.descriptors_600.replace(/\n/g, "<br />"));
+            $('#labels3000').html(data.descriptors_3000.replace(/\n/g, "<br />"));
+            $('#labelsAll').html(data.all_descriptors.replace(/\n/g, "<br />"));
+            $('#labelsTax').html(data.descriptors_and_tax.replace(/\n/g, "<br />"));
             $('#taxonomies').html(data.taxonomies.replace(/\n/g, "<br />"));
         }
         });
