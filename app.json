@@ -1,0 +1,9 @@
+{
+  "name": "predict news labels",
+  "description": "predict news labels, traind on NYT annotated corpus",
+  "scripts": {
+    "dokku": {
+      "predeploy": "python download_word2vec_model.py"
+    }
+  }
+}
