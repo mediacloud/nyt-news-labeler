@@ -9,7 +9,7 @@ import sys
 import cPickle as pickle
 
 from labeller import base_dir
-from labeller.topicdetection import TopicDetectionModel
+from labeller.topicdetection import TopicDetectionModel, VectorizerModel
 
 logger = logging.getLogger(__name__)
 
@@ -20,6 +20,7 @@ model600 = None
 model_all = None
 model_with_tax = None
 model_just_tax = None
+vectorize_model = None
 
 
 def initialize():
@@ -70,7 +71,7 @@ def _load_scaler_to_memory(path):
 
 
 def _load_scalers():
-    global model3000, model600, model_all, model_with_tax, model_just_tax
+    global model3000, model600, model_all, model_with_tax, model_just_tax,vectorize_model
 
     models_dir = os.path.join(base_dir, "models")
     saved_models_dir = os.path.join(models_dir, "saved_models")
@@ -107,3 +108,5 @@ def _load_scalers():
     keras_model_just_tax = load_model(os.path.join(saved_models_dir, 'just_taxonomies.hdf5'))
     model_just_tax = TopicDetectionModel(keras_model=keras_model_just_tax, word2vec_model=word2vecmodel,
                                          scaler=scaler, labels=taxonomies)
+
+    vectorize_model = VectorizerModel(word2vec_model=word2vecmodel, scaler=scaler)
