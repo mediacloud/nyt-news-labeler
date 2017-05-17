@@ -49,3 +49,10 @@ def dcgan():
                     'descriptors_and_tax': "\n".join(["%s : %s" % (x[0], "{0:.5f}".format(x[1])) for x in res_with_tax[:30]]),
                     'taxonomies': "\n".join(["%s : %s" % (x[0], "{0:.5f}".format(x[1])) for x in res_just_tax[:30]]),
                     })
+
+@app.route('/word2vec', methods=['POST'])
+def word2vec():
+    text =  request.json["text"]
+    result = models.vectorize_model.vectorize(text)
+    return jsonify(result)
+
