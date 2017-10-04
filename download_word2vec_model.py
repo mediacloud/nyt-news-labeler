@@ -1,12 +1,28 @@
 import os
-import urllib
+import requests
+import shutil
 
-emmbedings_dir = "./word2vec-GoogleNews-vectors"
-emmbedings_file_name = "GoogleNews-vectors-negative300.bin"
-emmbedings_file_path = os.path.join(emmbedings_dir, emmbedings_file_name)
+# this is hosted in Rahul's MIT Dropbox folder
+MODEL_GOOGLE_NEWS_URL = "https://www.dropbox.com/s/ube0ajo5jej8g62/GoogleNews-vectors-negative300.bin?dl=1"
 
-if not os.path.exists(emmbedings_dir):
-    os.mkdir(emmbedings_dir)
-if not os.path.isfile(emmbedings_file_path):
-    print "Google word2vec model not found, downloading file..."
-    urllib.urlretrieve("https://dl.dropboxusercontent.com/u/466924777/GoogleNews-vectors-negative300.bin", emmbedings_file_path)
+model_dir = "./word2vec-GoogleNews-vectors"
+model_name = "GoogleNews-vectors-negative300.bin"
+
+path_to_model_file = os.path.join(model_dir, model_name)
+
+if not os.path.exists(model_dir):
+    os.mkdir(model_dir)
+
+
+# https://stackoverflow.com/a/39217788/1172063
+def download_file(url, destination_file):
+    r = requests.get(url, stream=True)
+    with open(destination_file, 'wb') as f:
+        shutil.copyfileobj(r.raw, f)
+
+if not os.path.isfile(path_to_model_file):
+    print "Google word2vec model not found, downloading model file from the cloud..."
+    download_file(MODEL_GOOGLE_NEWS_URL, path_to_model_file)
+    print "  done!"
+else:
+    print "Google word2vec model already exists."
