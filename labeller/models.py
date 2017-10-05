@@ -56,7 +56,7 @@ def _download_nyt_model_files():
     models_file_path = os.path.join(base_dir, models_dir, models_file_name)
     if not os.path.isdir(os.path.join(models_file_path)):
         logger.warning("Trained models not found, downloading files...")
-        urllib.urlretrieve("https://dl.dropboxusercontent.com/u/466924777/nyt_labels/saved_models.zip", models_file_path+".zip")
+        urllib.urlretrieve("https://s3.amazonaws.com/mediacloud-nytlabels-data/predict-news-labels/saved_models.zip", models_file_path+".zip")
         with zipfile.ZipFile(models_file_path+".zip","r") as zip_ref:
             zip_ref.extractall(models_dir)
     else:

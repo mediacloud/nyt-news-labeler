@@ -2,8 +2,7 @@ import os
 import requests
 import shutil
 
-# this is hosted in Rahul's MIT Dropbox folder
-MODEL_GOOGLE_NEWS_URL = "https://www.dropbox.com/s/ube0ajo5jej8g62/GoogleNews-vectors-negative300.bin?dl=1"
+MODEL_GOOGLE_NEWS_URL = "https://s3.amazonaws.com/mediacloud-nytlabels-data/predict-news-labels/GoogleNews-vectors-negative300.bin"
 
 model_dir = "./word2vec-GoogleNews-vectors"
 model_name = "GoogleNews-vectors-negative300.bin"
