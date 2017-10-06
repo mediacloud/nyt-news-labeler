@@ -1,6 +1,5 @@
 import os
 import logging
-import zipfile
 import gensim
 import urllib
 from keras.models import load_model
@@ -29,7 +28,6 @@ def initialize():
         logger.error("Missing Google News models! Follow the README.md instructions for downloading and installing them")
         sys.exit()
     _load_vectors_file()
-    _download_nyt_model_files()
     _load_scalers()
 
 
@@ -48,19 +46,6 @@ def _load_vectors_file():
     logger.info("  Loading pre-trained word to vec model...")
     word2vecmodel = gensim.models.Word2Vec.load_word2vec_format(_path_to_vectors_file(), binary=True)
     logger.info("    weord2vec Model loaded")
-
-
-def _download_nyt_model_files():
-    models_dir = "models"
-    models_file_name = "saved_models"
-    models_file_path = os.path.join(base_dir, models_dir, models_file_name)
-    if not os.path.isdir(os.path.join(models_file_path)):
-        logger.warning("Trained models not found, downloading files...")
-        urllib.urlretrieve("https://s3.amazonaws.com/mediacloud-nytlabels-data/predict-news-labels/saved_models.zip", models_file_path+".zip")
-        with zipfile.ZipFile(models_file_path+".zip","r") as zip_ref:
-            zip_ref.extractall(models_dir)
-    else:
-        logger.info("  NYT model files exists")
 
 
 def _load_scaler_to_memory(path):
