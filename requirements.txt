@@ -15,6 +15,7 @@ mock==2.0.0
 nltk==3.2.2
 numpy==1.12.0
 packaging==16.8
+pattern==2.6
 pbr==1.10.0
 protobuf==3.2.0
 pyparsing==2.1.10
