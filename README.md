@@ -25,6 +25,12 @@ pip install -r requirements.txt
 
 You also need the `word2vec` pre-trained Google News corpus.  Run `download_word2vec_model.py` to get it.
 
+Lastly, you'll need `punkt` dataset from NLTK data:
+
+```shell
+python -m nltk.downloader -d /usr/local/share/nltk_data punkt
+```
+
 Usage
 -----
 
