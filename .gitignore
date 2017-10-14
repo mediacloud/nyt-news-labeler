@@ -94,3 +94,7 @@ word2vec-GoogleNews-vectors/
 scaler/scaler_2
 scaler/scalar_all_labels
 scaler/scaler_labels_long
+
+# Mark file which denotes that model as been downloaded and extracted
+.*.downloaded
+

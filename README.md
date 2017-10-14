@@ -23,7 +23,7 @@ source venv/bin/activate
 pip install -r requirements.txt  
 ```
 
-You also need the `word2vec` pre-trained Google News corpus.  Run `download_word2vec_model.py` to get it.
+You also need the `word2vec` pre-trained Google News corpus and NYTLabels model.  Run `download_models.py` to get them.
 
 Usage
 -----
