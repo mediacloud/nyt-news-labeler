@@ -50,6 +50,7 @@ def dcgan():
                     'taxonomies': "\n".join(["%s : %s" % (x[0], "{0:.5f}".format(x[1])) for x in res_just_tax[:30]]),
                     })
 
+
 @app.route('/word2vec', methods=['POST'])
 def word2vec():
     text =  request.json["text"]
