@@ -5,7 +5,7 @@ click==6.7
 Flask==1.0.2
 funcsigs==1.0.2
 gensim==0.13.4.1
-gunicorn==19.6.0
+gunicorn==19.9.0
 h5py==2.6.0
 itsdangerous==0.24
 Jinja2==2.10.0
