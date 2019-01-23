@@ -11,6 +11,8 @@ models.initialize()
 logger.info("Starting web app")
 app = Flask(__name__)
 
+VERSION = '1.0.1';
+
 
 @app.route('/')
 def index():
@@ -27,12 +29,17 @@ def predict():
     res_all = models.model_all.predict(text)
     res_with_tax = models.model_with_tax.predict(text)
     res_just_tax = models.model_just_tax.predict(text)
-    return jsonify({'descriptors600': [{'label': x[0], 'score': "{0:.5f}".format(x[1])} for x in res600[:30]],
-                    'descriptors3000': [{'label': x[0], 'score': "{0:.5f}".format(x[1])} for x in res3000[:30]],
-                    'allDescriptors': [{'label': x[0], 'score': "{0:.5f}".format(x[1])} for x in res_all[:30]],
-                    'descriptorsAndTaxonomies': [{'label': x[0], 'score': "{0:.5f}".format(x[1])} for x in res_with_tax[:30]],
-                    'taxonomies': [{'label': x[0], 'score': "{0:.5f}".format(x[1])} for x in res_just_tax[:30]],
+    return jsonify({'descriptors600': [_format_result(x) for x in res600[:30]],
+                    'descriptors3000': [_format_result(x) for x in res3000[:30]],
+                    'allDescriptors': [_format_result(x) for x in res_all[:30]],
+                    'descriptorsAndTaxonomies': [_format_result(x) for x in res_with_tax[:30]],
+                    'taxonomies': [_format_result(x) for x in res_just_tax[:30]],
+                    'version': VERSION,
                     })
+
+
+def _format_result(x):
+    return {'label': x[0], 'score': "{0:.5f}".format(x[1])}
 
 
 @app.route('/predict', methods=['POST'])
@@ -43,17 +50,21 @@ def dcgan():
     res_all = models.model_all.predict(text)
     res_with_tax = models.model_with_tax.predict(text)
     res_just_tax = models.model_just_tax.predict(text)
-    return jsonify({'descriptors_600': "\n".join(["%s : %s"%(x[0], "{0:.5f}".format(x[1])) for x in res600[:30]]),
-                    'descriptors_3000': "\n".join(["%s : %s"%(x[0], "{0:.5f}".format(x[1])) for x in res3000[:30]]),
-                    'all_descriptors': "\n".join(["%s : %s" % (x[0], "{0:.5f}".format(x[1])) for x in res_all[:30]]),
-                    'descriptors_and_tax': "\n".join(["%s : %s" % (x[0], "{0:.5f}".format(x[1])) for x in res_with_tax[:30]]),
-                    'taxonomies': "\n".join(["%s : %s" % (x[0], "{0:.5f}".format(x[1])) for x in res_just_tax[:30]]),
+    return jsonify({'descriptors_600': "\n".join([_format_text(x) for x in res600[:30]]),
+                    'descriptors_3000': "\n".join([_format_text(x) for x in res3000[:30]]),
+                    'all_descriptors': "\n".join([_format_text(x) for x in res_all[:30]]),
+                    'descriptors_and_tax': "\n".join([_format_text(x) for x in res_with_tax[:30]]),
+                    'taxonomies': "\n".join([_format_text(x) for x in res_just_tax[:30]]),
+                    'version': VERSION,
                     })
 
 
 @app.route('/word2vec', methods=['POST'])
 def word2vec():
-    text =  request.json["text"]
+    text = request.json["text"]
     result = models.vectorize_model.vectorize(text)
     return jsonify(result)
 
+
+def _format_text(x):
+    return "%s : %s" % (x[0], "{0:.5f}".format(x[1]))

@@ -38,8 +38,16 @@ Simply do `run.sh`, or `gunicorn app:app -t 900` and then visit `localhost:8000/
 
 Note: this consumes about **5GB of memory** while running, to keep all the models loaded up.
 
+
+Releasing
+---------
+
+When you creating a new release, be sure to increment the `VERSION` constant in `app.py`. Then tag the repo with the
+same number. 
+
+
 Deploying
 ---------
 
-This is built to deploy on Dokku.  Set the `WORKERS` environment variable to set how many workers gunicorn
-starts with.
+This is built to deploy in a container (we use Dokku).  Set the `WORKERS` environment variable to set how many
+workers gunicorn starts with.
