@@ -3,10 +3,10 @@ NYT-Based News Tagger
 
 A labeller for news articles trained on the [NYT annotated corpus](https://catalog.ldc.upenn.edu/ldc2008t19)
 by Jasmin Rubinovitz as part of the [MIT Media Lab SuperGlue project](https://www.media.mit.edu/projects/superglue/overview/).
-Give it the clean text of a story (ie. no html content), and it returns various descriptors
-and taxonomic classifiers based on models trained on the taging in the NYT corpus.
+Give it the clean text of a story (i.e. no html content), and it returns various descriptors
+and taxonomic classifiers based on models trained on the tagging in the NYT corpus.
 
-We use it in the Media Cloud project to automatically tag every news stories with the themes we think they are about.
+We use it in the Media Cloud project to automatically tag all news stories with the themes we think they are about.
 
 Installation
 ------------
