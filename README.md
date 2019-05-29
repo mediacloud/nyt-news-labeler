@@ -18,9 +18,9 @@ On OSX I had to install hdf5 first with brew: `brew install hdf5`.
 Do this to install all the Python dependencies.
 
 ```shell
-virtualenv venv
+virtualenv -p python2.7 venv
 source venv/bin/activate
-pip install -r requirements.txt  
+pip install -r requirements.txt
 ```
 
 You also need the `word2vec` pre-trained Google News corpus and NYTLabels model.  Run `download_models.py` to get them.
