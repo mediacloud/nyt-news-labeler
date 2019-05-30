@@ -24,7 +24,7 @@ vectorize_model = None
 def initialize():
     logger.info("Prepping models:")
     if not _vectors_file_exists():
-        logger.error("Missing Google News models! Follow the README.md instructions for installing them")
+        logger.error("Missing Google News models! Follow the README.md instructions for downloading and installing them")
         sys.exit()
     _load_vectors_file()
     _load_scalers()
@@ -32,19 +32,27 @@ def initialize():
 
 def _path_to_vectors_file():
     dir_name = "word2vec-GoogleNews-vectors"
-    file_name = "GoogleNews-vectors-negative300.bin"
+    file_name = "GoogleNews-vectors-negative300.unit_normalized.bin"
     return os.path.join(base_dir, dir_name, file_name)
 
 
 def _vectors_file_exists():
-    return os.path.exists(_path_to_vectors_file())
+    return os.path.exists(_path_to_vectors_file()) and os.path.exists(_path_to_vectors_file() + '.vectors.npy')
 
 
 def _load_vectors_file():
     global word2vecmodel
-    logger.info("  Loading pre-trained word to vec model...")
-    word2vecmodel = gensim.models.Word2Vec.load_word2vec_format(_path_to_vectors_file(), binary=True)
-    logger.info("    word2vec Model loaded")
+    logger.info("Loading pre-trained word2vec model...")
+    word2vecmodel = gensim.models.KeyedVectors.load(_path_to_vectors_file(), mmap='r')
+
+    # https://stackoverflow.com/a/43067907
+    logger.info("  Preventing recalculation of normalized vectors...")
+    word2vecmodel.syn0norm = word2vecmodel.syn0
+
+    logger.info("  Paging model into memory...")
+    word2vecmodel.most_similar('news')
+
+    logger.info("Loaded pre-trained word2vec model.")
 
 
 def _load_scaler_to_memory(path):
@@ -55,7 +63,7 @@ def _load_scaler_to_memory(path):
 
 
 def _load_scalers():
-    global model3000, model600, model_all, model_with_tax, model_just_tax, vectorize_model
+    global model3000, model600, model_all, model_with_tax, model_just_tax,vectorize_model
 
     models_dir = os.path.join(base_dir, "models")
     saved_models_dir = os.path.join(models_dir, "saved_models")
