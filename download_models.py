@@ -19,6 +19,7 @@ def __download_file(url, dest_path):
     args = [
         "curl",
         # "--silent",
+        "--continue-at", "-",
         "--show-error",
         "--fail",
         "--retry", "3",
@@ -61,13 +62,13 @@ def download_model(url, dest_dir, expected_size):
         need_to_download = True
         if os.path.isfile(dest_path):
             if os.path.getsize(dest_path) != expected_size:
-                print "Removing incomplete model file %s..." % (dest_path,)
-                os.unlink(dest_path)
+                print "Found a partial download, will continue it at %s..." % (dest_path,)
             else:
                 need_to_download = False
+        else:
+            print "Model %s was not found, will start download from %s..." % (dest_path, url,)
 
         if need_to_download:
-            print "Model %s was not found, downloading from %s..." % (dest_path, url,)
             __download_file(url=url, dest_path=dest_path)
 
         if os.path.getsize(dest_path) != expected_size:
