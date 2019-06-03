@@ -87,10 +87,10 @@ def download_all_models():
 
     models = [
         {
-            # See normalize_googlenews_model.py
-            'url': 'https://s3.amazonaws.com/mediacloud-nytlabels-data/predict-news-labels-repackaged/GoogleNews-vectors-negative300.unit_normalized.bin.zip',
+            # See word2vec_to_keyedvectors.py
+            'url': 'https://s3.amazonaws.com/mediacloud-nytlabels-data/predict-news-labels-repackaged/GoogleNews-vectors-negative300.keyedvectors.bin.zip',
             'dest_dir': __pwd() + '/word2vec-GoogleNews-vectors/',
-            'expected_size': 2829552364,
+            'expected_size': 1688057123,
         },
         {
             'url': 'https://s3.amazonaws.com/mediacloud-nytlabels-data/predict-news-labels-repackaged/saved_models.zip',
