@@ -25,7 +25,7 @@ RUN \
     apt-get -y --no-install-recommends install apt-transport-https && \
     apt-get -y --no-install-recommends install acl && \
     apt-get -y --no-install-recommends install sudo && \
-    apt-get -y --no-install-recommends install build-essential curl file python python-dev python-h5py python-pip python-setuptools unzip && \
+    apt-get -y --no-install-recommends install brotli build-essential curl file python python-dev python-h5py python-pip python-setuptools && \
     apt-get -y clean && \
     \
     pip install --upgrade pip && \

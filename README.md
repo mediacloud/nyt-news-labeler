@@ -13,7 +13,7 @@ Installation
 
 This is built with Python. 
 
-On OSX I had to install hdf5 first with brew: `brew install hdf5`.
+On OSX I had to install brotli and hdf5 first with brew: `brew install brotli hdf5`.
 
 Do this to install all the Python dependencies.
 
