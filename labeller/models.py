@@ -1,11 +1,11 @@
 import os
 import logging
 import gensim
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from keras.models import load_model
 import json
 import sys
-import cPickle as pickle
+import pickle as pickle
 
 from labeller import base_dir
 from labeller.topicdetection import TopicDetectionModel, VectorizerModel

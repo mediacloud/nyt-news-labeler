@@ -51,18 +51,18 @@ def download_model(url, dest_dir, expected_size):
     downloaded_marker_path = os.path.join(dest_dir, downloaded_marker_file)
 
     if os.path.exists(downloaded_marker_path):
-        print "Model %s already exists." % (dest_path,)
+        print("Model %s already exists." % (dest_path,))
 
     else:
 
         need_to_download = True
         if os.path.isfile(dest_path):
             if os.path.getsize(dest_path) != expected_size:
-                print "Found a partial download, will continue it at %s..." % (dest_path,)
+                print("Found a partial download, will continue it at %s..." % (dest_path,))
             else:
                 need_to_download = False
         else:
-            print "Model %s was not found, will start download from %s..." % (dest_path, url,)
+            print("Model %s was not found, will start download from %s..." % (dest_path, url,))
 
         if need_to_download:
             __download_file(url=url, dest_path=dest_path)
@@ -70,7 +70,7 @@ def download_model(url, dest_dir, expected_size):
         if os.path.getsize(dest_path) != expected_size:
             raise Exception("Downloaded file size is not %d." % (expected_size,))
 
-        print "Decompressing %s to %s..." % (dest_path, dest_dir,)
+        print("Decompressing %s to %s..." % (dest_path, dest_dir,))
         __decompress_file(brotli_file=dest_path)
 
         os.unlink(dest_path)

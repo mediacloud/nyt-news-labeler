@@ -37,7 +37,7 @@ class TopicDetectionModel():
 
         y_predicted = self.keras_model.predict(x)
 
-        zipped = zip(self.labels, y_predicted[0])
+        zipped = list(zip(self.labels, y_predicted[0]))
 
         return sorted(zipped, key=lambda elem: elem[1], reverse=True)
 
