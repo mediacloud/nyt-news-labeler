@@ -11,7 +11,7 @@ models.initialize()
 logger.info("Starting web app")
 app = Flask(__name__)
 
-VERSION = '1.0.1';
+VERSION = '1.1.0';
 
 
 @app.route('/')
