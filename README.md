@@ -13,7 +13,7 @@ Installation
 
 This is built with Python. 
 
-On OSX I had to install hdf5 first with brew: `brew install hdf5`.
+On OSX I had to install brotli and hdf5 first with brew: `brew install brotli hdf5`.
 
 Do this to install all the Python dependencies.
 
@@ -36,7 +36,7 @@ Usage
 
 Simply do `run.sh`, or `gunicorn app:app -t 900` and then visit `localhost:8000/` to try it out.
 
-Note: this consumes about **5GB of memory** while running, to keep all the models loaded up.
+Note: this consumes about **4 GB of memory** while running, to keep all the models loaded up.
 
 
 Releasing

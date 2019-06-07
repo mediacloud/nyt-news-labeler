@@ -32,7 +32,7 @@ def initialize():
 
 def _path_to_vectors_file():
     dir_name = "word2vec-GoogleNews-vectors"
-    file_name = "GoogleNews-vectors-negative300.unit_normalized.bin"
+    file_name = "GoogleNews-vectors-negative300.keyedvectors.bin"
     return os.path.join(base_dir, dir_name, file_name)
 
 
@@ -44,14 +44,6 @@ def _load_vectors_file():
     global word2vecmodel
     logger.info("Loading pre-trained word2vec model...")
     word2vecmodel = gensim.models.KeyedVectors.load(_path_to_vectors_file(), mmap='r')
-
-    # https://stackoverflow.com/a/43067907
-    logger.info("  Preventing recalculation of normalized vectors...")
-    word2vecmodel.syn0norm = word2vecmodel.syn0
-
-    logger.info("  Paging model into memory...")
-    word2vecmodel.most_similar('news')
-
     logger.info("Loaded pre-trained word2vec model.")
 
 

@@ -30,19 +30,15 @@ def __download_file(url, dest_path):
     subprocess.check_call(args)
 
 
-def __unzip_file(zip_file, dest_dir):
-    """Unzip file to destination directory."""
+def __decompress_file(brotli_file):
+    """Decompress Brotli file to destination directory."""
 
-    if not os.path.isdir(dest_dir):
-        os.mkdir(dest_dir)
-
-    # System's `unzip` is also faster than Python's "zipfile"
-    args = ["unzip", "-o", zip_file]
-    subprocess.check_call(args, cwd=dest_dir)
+    args = ["brotli", "-d", brotli_file]
+    subprocess.check_call(args)
 
 
 def download_model(url, dest_dir, expected_size):
-    """Download model from URL to a specified destination directory, check if the size is correct, unzip."""
+    """Download model from URL to a specified destination directory, check if the size is correct, decompress."""
 
     if not os.path.isdir(dest_dir):
         os.mkdir(dest_dir)
@@ -74,8 +70,8 @@ def download_model(url, dest_dir, expected_size):
         if os.path.getsize(dest_path) != expected_size:
             raise Exception("Downloaded file size is not %d." % (expected_size,))
 
-        print "Unzipping %s to %s..." % (dest_path, dest_dir,)
-        __unzip_file(zip_file=dest_path, dest_dir=dest_dir)
+        print "Decompressing %s to %s..." % (dest_path, dest_dir,)
+        __decompress_file(brotli_file=dest_path)
 
         os.unlink(dest_path)
 
@@ -86,17 +82,42 @@ def download_all_models():
     """Download and prepare all the required models."""
 
     models = [
+        # See word2vec_to_keyedvectors.py
         {
-            # See normalize_googlenews_model.py
-            'url': 'https://s3.amazonaws.com/mediacloud-nytlabels-data/predict-news-labels-repackaged/GoogleNews-vectors-negative300.unit_normalized.bin.zip',
+            'url': 'https://mediacloud-nytlabels-data.s3.amazonaws.com/predict-news-labels-keyedvectors/GoogleNews-vectors-negative300.keyedvectors.bin.br',
             'dest_dir': __pwd() + '/word2vec-GoogleNews-vectors/',
-            'expected_size': 2829552364,
+            'expected_size': 68284073,
         },
         {
-            'url': 'https://s3.amazonaws.com/mediacloud-nytlabels-data/predict-news-labels-repackaged/saved_models.zip',
-            'dest_dir': __pwd() + '/models/',
-            'expected_size': 616582073,
-        }
+            'url': 'https://mediacloud-nytlabels-data.s3.amazonaws.com/predict-news-labels-keyedvectors/GoogleNews-vectors-negative300.keyedvectors.bin.vectors.npy.br',
+            'dest_dir': __pwd() + '/word2vec-GoogleNews-vectors/',
+            'expected_size': 1316205343,
+        },
+        {
+            'url': 'https://mediacloud-nytlabels-data.s3.amazonaws.com/predict-news-labels-keyedvectors/all_descriptors.hdf5.br',
+            'dest_dir': __pwd() + '/models/saved_models/',
+            'expected_size': 370734856,
+        },
+        {
+            'url': 'https://mediacloud-nytlabels-data.s3.amazonaws.com/predict-news-labels-keyedvectors/descriptors_3000.hdf5.br',
+            'dest_dir': __pwd() + '/models/saved_models/',
+            'expected_size': 61285705,
+        },
+        {
+            'url': 'https://mediacloud-nytlabels-data.s3.amazonaws.com/predict-news-labels-keyedvectors/descriptors_600.hdf5.br',
+            'dest_dir': __pwd() + '/models/saved_models/',
+            'expected_size': 21018967,
+        },
+        {
+            'url': 'https://mediacloud-nytlabels-data.s3.amazonaws.com/predict-news-labels-keyedvectors/descriptors_and_taxonomies.hdf5.br',
+            'dest_dir': __pwd() + '/models/saved_models/',
+            'expected_size': 95996935,
+        },
+        {
+            'url': 'https://mediacloud-nytlabels-data.s3.amazonaws.com/predict-news-labels-keyedvectors/just_taxonomies.hdf5.br',
+            'dest_dir': __pwd() + '/models/saved_models/',
+            'expected_size': 51423506,
+        },
     ]
 
     for model in models:
