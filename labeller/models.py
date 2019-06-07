@@ -33,19 +33,19 @@ def initialize():
 
 def _path_to_vectors_file():
     dir_name = "word2vec-GoogleNews-vectors"
-    file_name = "GoogleNews-vectors-negative300.bin"
+    file_name = "GoogleNews-vectors-negative300.keyedvectors.bin"
     return os.path.join(base_dir, dir_name, file_name)
 
 
 def _vectors_file_exists():
-    return os.path.exists(_path_to_vectors_file())
+    return os.path.exists(_path_to_vectors_file()) and os.path.exists(_path_to_vectors_file() + '.vectors.npy')
 
 
 def _load_vectors_file():
     global word2vecmodel
-    logger.info("  Loading pre-trained word to vec model...")
-    word2vecmodel = gensim.models.Word2Vec.load_word2vec_format(_path_to_vectors_file(), binary=True)
-    logger.info("    weord2vec Model loaded")
+    logger.info("Loading pre-trained word2vec model...")
+    word2vecmodel = gensim.models.KeyedVectors.load(_path_to_vectors_file(), mmap='r')
+    logger.info("Loaded pre-trained word2vec model.")
 
 
 def _load_scaler_to_memory(path):
