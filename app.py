@@ -11,7 +11,10 @@ models.initialize()
 logger.info("Starting web app")
 app = Flask(__name__)
 
-VERSION = '1.1.0';
+VERSION = '1.1.1';
+
+# When an exception gets raised, log it and don't just quietly shut down
+app.config['PROPAGATE_EXCEPTIONS'] = True
 
 
 @app.route('/')

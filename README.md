@@ -34,7 +34,7 @@ python -m nltk.downloader -d /usr/local/share/nltk_data punkt
 Usage
 -----
 
-Simply do `run.sh`, or `gunicorn app:app -t 900` and then visit `localhost:8000/` to try it out.
+Simply do `run.sh`, or `gunicorn app:app -t 900 --preload` and then visit `localhost:8000/` to try it out.
 
 Note: this consumes about **4 GB of memory** while running, to keep all the models loaded up.
 
