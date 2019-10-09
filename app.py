@@ -11,6 +11,9 @@ models.initialize()
 logger.info("Starting web app")
 app = Flask(__name__)
 
+# When an exception gets raised, log it and don't just quietly shut down
+app.config['PROPAGATE_EXCEPTIONS'] = True
+
 
 @app.route('/')
 def index():
