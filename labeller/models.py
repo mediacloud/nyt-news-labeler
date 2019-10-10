@@ -44,7 +44,7 @@ def _vectors_file_exists():
 def _load_vectors_file():
     global word2vecmodel
     logger.info("Loading pre-trained word2vec model...")
-    word2vecmodel = gensim.models.KeyedVectors.load(_path_to_vectors_file(), mmap='r')
+    word2vecmodel = gensim.models.KeyedVectors.load(_path_to_vectors_file())
     logger.info("Loaded pre-trained word2vec model.")
 
 
