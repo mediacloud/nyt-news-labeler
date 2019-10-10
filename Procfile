@@ -1,2 +1,1 @@
-web: gunicorn -t 2000 --workers $WORKERS app:app
-
+web: gunicorn -t 900  --preload --workers $WORKERS app:app
