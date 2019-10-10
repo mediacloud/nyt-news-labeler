@@ -59,3 +59,6 @@ def word2vec():
     text = request.json["text"]
     result = models.vectorize_model.vectorize(text)
     return jsonify(result)
+
+
+logger.info("Ready for requests!")
