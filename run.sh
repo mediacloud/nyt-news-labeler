@@ -1,2 +1,1 @@
-source venv/bin/activate
-gunicorn app:app -t 900 --preload
+gunicorn -b :8000 -t 900 app:app
