@@ -1,7 +1,6 @@
 import os
 import logging
 import gensim
-import urllib.request, urllib.parse, urllib.error
 from keras.models import load_model
 import json
 import sys
@@ -56,7 +55,7 @@ def _load_scaler_to_memory(path):
 
 
 def _load_scalers():
-    global model3000, model600, model_all, model_with_tax, model_just_tax,vectorize_model
+    global model3000, model600, model_all, model_with_tax, model_just_tax, vectorize_model
 
     models_dir = os.path.join(base_dir, "models")
     saved_models_dir = os.path.join(models_dir, "saved_models")
