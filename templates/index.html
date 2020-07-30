@@ -3,7 +3,7 @@
 
 <head>
     <title>News Labels Classifier</title>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
 </head>
@@ -17,32 +17,32 @@
 
         <h1>Predict News Labels</h1>
 
-        <h2>Input text here:</h2>
+        <h3>Input text here:</h3>
         <div>
             <textarea id="content" rows="40" style="width:80%;"></textarea>
         </div>
-        <button id="getLabels">Get Labels!</button>
+        <button id="getLabels" type="button" class="btn btn-primary">Get Labels!</button>
 
-        <h2>Labels:</h2>
+        <h3>Labels:</h3>
         <div class="row">
             <div class="col-md-2">
-                <h3>600 Labels</h3>
+                <h5>600 Labels</h5>
                 <div id="labels600"></div>
             </div>
             <div class="col-md-2">
-                <h3>3455 Labels (>30 articles)</h3>
+                <h5>3455 Labels (>30 articles)</h5>
                 <div id="labels3000"></div>
             </div>
             <div class="col-md-2">
-                <h3>All Labels (26000)</h3>
+                <h5>All Labels (26000)</h5>
                 <div id="labelsAll"></div>
             </div>
             <div class="col-md-2">
-                <h3>Labels + Taxonomies (>30)</h3>
+                <h5>Labels + Taxonomies (>30)</h5>
                 <div id="labelsTax"></div>
             </div>
             <div class="col-md-2">
-                <h3>Taxonomies</h3>
+                <h5>Taxonomies</h5>
                 <div id="taxonomies"></div>
             </div>
         </table>
