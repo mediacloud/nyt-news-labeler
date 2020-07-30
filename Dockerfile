@@ -1,23 +1,23 @@
 #
 # Build image:
 #
-#     docker build -t predict-news-labels .
+#     docker build -t nyt-news-labeler .
 #
 # Run image:
 #
-#     docker run -p 8000:8000 predict-news-labels
+#     docker run -p 8000:8000 nyt-news-labeler
 #
 # Push image to Docker Hub:
 #
-#     docker tag predict-news-labels:latest dockermediacloud/predict-news-labels:<YYYYMMDD>
-#     docker push dockermediacloud/predict-news-labels:<YYYYMMDD>
+#     docker tag nyt-news-labeler:latest dockermediacloud/nyt-news-labeler:<YYYYMMDD>
+#     docker push dockermediacloud/nyt-news-labeler:<YYYYMMDD>
 #
 
 FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
-COPY . /predict-news-labels/
+COPY . /nyt-news-labeler/
 
 RUN \
     apt-get -y update && \
@@ -34,10 +34,10 @@ RUN \
     useradd -ms /bin/bash nytlabels && \
     echo 'nytlabels ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99_nytlabels && \
     \
-    mv /predict-news-labels /home/nytlabels/predict-news-labels && \
+    mv /nyt-news-labeler /home/nytlabels/nyt-news-labeler && \
     chown -R nytlabels:nytlabels /home/nytlabels/
 
-WORKDIR /home/nytlabels/predict-news-labels/
+WORKDIR /home/nytlabels/nyt-news-labeler/
 
 RUN \
     pip install -r requirements.txt && \
