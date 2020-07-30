@@ -109,9 +109,7 @@ When you creating a new release, be sure to increment the `VERSION` constant in 
 same number. 
 
 
-Deploying
----------
+Deploying 🚧
+------------
 
-This is built to deploy in a container (we use Dokku).  Set the `WORKERS` environment variable to set how many
-workers gunicorn starts with. If you want to scale horizontally remember that each instance will want to load its own
-copy of the models, so you'll need around 8 GB for each instance. 
+Still working on the Dockerfile. For now you'll have to just follow the instructions above for running it.
