@@ -25,8 +25,8 @@ RUN \
     apt-get -y --no-install-recommends install apt-transport-https && \
     apt-get -y --no-install-recommends install acl && \
     apt-get -y --no-install-recommends install sudo && \
-    apt-get -y --no-install-recommends install libblas-dev  liblapack-dev && \
-    apt-get -y --no-install-recommends install brotli build-essential curl file python3.7 python3-dev python3-h5py python3-pip python3-setuptools && \
+    apt-get -y --no-install-recommends install libblas-dev liblapack-dev gfortran && \
+    apt-get -y --no-install-recommends install brotli build-essential curl file python3.7 python3.7-dev python3-h5py python3.7-pip python3.7-setuptools && \
     apt-get -y clean && \
     \
     pip3 install --upgrade pip && \
