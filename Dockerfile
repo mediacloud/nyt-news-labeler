@@ -13,7 +13,7 @@
 #     docker push dockermediacloud/nyt-news-labeler:<YYYYMMDD>
 #
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -25,10 +25,10 @@ RUN \
     apt-get -y --no-install-recommends install apt-transport-https && \
     apt-get -y --no-install-recommends install acl && \
     apt-get -y --no-install-recommends install sudo && \
-    apt-get -y --no-install-recommends install brotli build-essential curl file python python-dev python-h5py python-pip python-setuptools && \
+    apt-get -y --no-install-recommends install brotli build-essential curl file python3.7 python3-dev python3-h5py python3-pip python3-setuptools && \
     apt-get -y clean && \
     \
-    pip install --upgrade pip && \
+    pip3 install --upgrade pip && \
     rm -rf /root/.cache/ && \
     \
     useradd -ms /bin/bash nytlabels && \
@@ -40,13 +40,13 @@ RUN \
 WORKDIR /home/nytlabels/nyt-news-labeler/
 
 RUN \
-    pip install -r requirements.txt && \
-    python -m nltk.downloader -d /usr/local/share/nltk_data punkt && \
+    pip3 install -r requirements.txt && \
+    python3 -m nltk.downloader -d /usr/local/share/nltk_data punkt && \
     rm -rf /home/nytlabels/.cache/
 
 USER nytlabels
 
-RUN python download_models.py
+RUN python3 download_models.py
 
 EXPOSE 8000
 
