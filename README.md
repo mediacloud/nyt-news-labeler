@@ -9,17 +9,27 @@ and taxonomic classifiers based on models trained on the tagging in the NYT corp
 We use it in the [Media Cloud](https://mediacloud.org) project to automatically tag all news stories with the
 themes we think they are about.
 
+Running Via DockerHub
+---------------------
 
-Installation
-------------
+The quickest path to running this is to fetch the latest release from DockerHub:
 
-1. Install Python 3.7.3 (we use pyenv: `pyenv install 3.7.3`)
+```
+docker pull rahulbot/nyt-news-labeler:latest
+docker run -p 8000:8000 -m 8G -d rahulbot/nyt-news-labeler:latest
+```
+
+Then just hit a `http://localhost:8080/` to test it out.
+
+
+Local Dev Installation
+----------------------
+
+1. Install Python 3.x (we use pyenv: `pyenv install 3.8.2`)
 2. Install python requirements: `pip install -r requirements.txt`
-3. Download the models: `download_models.py` (this will take 10+ minutes, depending on your internet speed)
+3. Install [brotli](https://brotli.org/index.html): `brew install brotli` (on MacOS) 
+4. Download the models: `download_models.py` (this will take 10+ minutes, depending on your internet speed)
 
-
-Usage
------
 
 Run `./run.sh`. Note: this consumes about **8 GB of memory** while running, to keep all the models loaded up.
 
@@ -102,14 +112,25 @@ You will get back results like this:
 ```
 
 
-Releasing
----------
+Releasing to Docker Hub
+-----------------------
 
 When you creating a new release, be sure to increment the `VERSION` constant in `app.py`. Then tag the repo with the 
 same number. 
 
+I build and release this to DockerHub for easier deployment on your server. To release the latest code I run:
+```
+docker build -t rahulbot/nyt-news-labeler .
+docker push rahulbot/nyt-news-labeler
+```
 
-Deploying 🚧
-------------
+To release a tagged version, I something like this run:
+```
+docker build -t rahulbot/nyt-news-labeler:1.1.0 .
+docker push rahulbot/nyt-news-labeler:1.1.0
+```
 
-Still working on the Dockerfile. For now you'll have to just follow the instructions above for running it.
+To run a container I've built locally I do: 
+```
+docker run -p 8000:8000 -m 8G rahulbot/nyt-news-labeler
+```
