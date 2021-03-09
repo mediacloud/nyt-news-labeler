@@ -6,6 +6,10 @@ by Jasmin Rubinovitz as part of the [MIT Media Lab SuperGlue project](https://ww
 Give it the clean text of a story (i.e. no html content), and it returns various descriptors
 and taxonomic classifiers based on models trained on the tagging in the NYT corpus.
 
+Note - we have *not* formally assessed these models for embedded bias. Surely they have many, because they are based on
+the Google News word2vec model and New York Times historical tagging. Be aware as you use results that they likely 
+reflect historical American cultural biases in news reporting.
+
 We use it in the [Media Cloud](https://mediacloud.org) project to automatically tag all news stories with the
 themes we think they are about.
 
