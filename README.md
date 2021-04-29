@@ -7,11 +7,12 @@ Give it the clean text of a story (i.e. no html content), and it returns various
 and taxonomic classifiers based on models trained on the tagging in the NYT corpus.
 
 Note - we have *not* formally assessed these models for embedded bias. Surely they have many, because they are based on
-the Google News word2vec model and New York Times historical tagging. Be aware as you use results that they likely 
+the Google News word2vec model and New York Times historical tagging. Be aware as you use results that they likely
 reflect historical American cultural biases in news reporting.
 
 We use it in the [Media Cloud](https://mediacloud.org) project to automatically tag all news stories with the
 themes we think they are about.
+
 
 Running Via DockerHub
 ---------------------
@@ -31,9 +32,8 @@ Local Dev Installation
 
 1. Install Python 3.x (we use pyenv: `pyenv install 3.8.2`)
 2. Install python requirements: `pip install -r requirements.txt`
-3. Install [brotli](https://brotli.org/index.html): `brew install brotli` (on MacOS) 
+3. Install [brotli](https://brotli.org/index.html): `brew install brotli` (on MacOS)
 4. Download the models: `download_models.py` (this will take 10+ minutes, depending on your internet speed)
-
 
 Run `./run.sh`. Note: this consumes about **8 GB of memory** while running, to keep all the models loaded up.
 
@@ -119,8 +119,8 @@ You will get back results like this:
 Releasing to Docker Hub
 -----------------------
 
-When you creating a new release, be sure to increment the `VERSION` constant in `app.py`. Then tag the repo with the 
-same number. 
+When you creating a new release, be sure to increment the `VERSION` constant in `app.py`. Then tag the repo with the
+same number.
 
 I build and release this to DockerHub for easier deployment on your server. To release the latest code I run:
 ```
@@ -134,7 +134,7 @@ docker build -t rahulbot/nyt-news-labeler:1.1.0 .
 docker push rahulbot/nyt-news-labeler:1.1.0
 ```
 
-To run a container I've built locally I do: 
+To run a container I've built locally I do:
 ```
 docker run -p 8000:8000 -m 8G rahulbot/nyt-news-labeler
 ```

@@ -8,16 +8,18 @@ COPY . /nyt-news-labeler/
 
 RUN apt-get update
 RUN apt-get install -y apt-utils
-RUN apt-get install -y python3
-RUN apt-get install -y python3-pip
 RUN apt-get install -y brotli
+RUN apt-get install -y curl
 
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository -y ppa:deadsnakes/ppa
+RUN apt-get install -y python3.7
 WORKDIR /nyt-news-labeler/
 
-RUN python3 -m pip install --upgrade pip
-RUN pip3 install -r requirements.txt
-RUN python3 -m nltk.downloader -d /usr/local/share/nltk_data punkt
-RUN python3 download_models.py
+RUN curl https://bootstrap.pypa.io/get-pip.py | python3.7
+RUN python3.7 -m pip install -r requirements.txt
+RUN python3.7 -m nltk.downloader -d /usr/local/share/nltk_data punkt
+RUN python3.7 download_models.py
 
 EXPOSE 8000
 
