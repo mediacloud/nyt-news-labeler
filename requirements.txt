@@ -39,6 +39,6 @@ tensorflow==1.15.4
 tensorflow-estimator==1.15.1
 termcolor==1.1.0
 Theano==1.0.4
-urllib3==1.25.6
+urllib3==1.25.8
 Werkzeug==0.16.0
 wrapt==1.11.2
