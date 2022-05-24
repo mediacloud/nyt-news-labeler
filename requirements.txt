@@ -35,7 +35,7 @@ smart-open==1.8.4
 # This means we have to run python between 3.6 and 3.8
 # https://www.tensorflow.org/install/pip#system-requirements
 tensorboard==1.15.0
-tensorflow==1.15.4
+tensorflow==2.6.4
 tensorflow-estimator==1.15.1
 termcolor==1.1.0
 Theano==1.0.4
