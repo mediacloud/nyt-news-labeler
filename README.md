@@ -30,7 +30,10 @@ Then just hit a `http://localhost:8080/` to test it out.
 Local Dev Installation
 ----------------------
 
-1. Install Python 3.x (we use pyenv: `pyenv install 3.8.2`)
+This is an old set of code, so it can be hard to install and run locally. The serialization of the models is tied to a 
+specific version of ternsorflow, which can make this hard to install as well.
+
+1. Install Python 3.7 (See `scripts/setup-mac-os.sh` for tips)
 2. Install python requirements: `pip install -r requirements.txt`
 3. Install [brotli](https://brotli.org/index.html): `brew install brotli` (on MacOS)
 4. Download the models: `download_models.py` (this will take 10+ minutes, depending on your internet speed)
