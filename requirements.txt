@@ -7,6 +7,7 @@ certifi==2019.9.11
 chardet==3.0.4
 docutils==0.15.2
 flask==1.1.2
+jinja2<3.1.0
 gast==0.2.2
 gensim==3.8.1
 google-pasta==0.1.7
